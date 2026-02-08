@@ -115,3 +115,30 @@
    - Pillow or OpenCV 
    - Grayscale 
    - Thresholding
+
+---
+
+# 5️⃣ Learning-first Implementation Plan (step-by-step)
+**Step 1: Understand PDF types (1–2 hrs)**
+- Open PDFs 
+- Try selecting text with mouse 
+- Observe differences
+
+**Step 2: Text-based extraction (core)**
+- Extract page by page 
+- Print raw output 
+- Observe formatting issues
+
+**Step 3: OCR pipeline**
+- Convert PDF → images
+- Run OCR
+- Compare accuracy
+
+**Step 4: Smart decision logic**
+- If extracted text length < threshold → OCR 
+- Else → normal extraction
+
+**Step 5: Cleaning & output**
+- Remove extra newlines 
+- Fix spacing 
+- Save to file
