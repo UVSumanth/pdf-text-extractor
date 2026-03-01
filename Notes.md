@@ -108,7 +108,7 @@ Reason: PDF stores visual positioning, not semantic math structure.
 
 ---
 
-## Confidence Summary
+## Confidence Summary:
 
 This project demonstrates understanding of:
 

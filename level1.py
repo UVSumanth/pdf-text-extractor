@@ -7,10 +7,8 @@
 import os
 import pdfplumber
 
+
 def extract_text_from_pdf(pdf_path, output_path):
-    """
-    Extracts text from a text-based PDF and writes it to a .txt file.
-    """
     extracted_text = ""
 
     try:
@@ -23,35 +21,36 @@ def extract_text_from_pdf(pdf_path, output_path):
                 if text:
                     extracted_text += f"\n----- Page {page_number} -----\n"
                     extracted_text += text + "\n"
-                else:
-                    print(f"Warning: Page {page_number} contains no extractable text.")
 
-        # Writing extracted text to output file
         with open(output_path, "w", encoding="utf-8") as file:
             file.write(extracted_text)
 
-        print(f"\n✅ Text successfully extracted and saved to:\n{output_path}")
+        print(f"\n✅ Text saved to: {output_path}")
 
     except Exception as e:
-        print(f"❌ Error occurred: {e}")
+        print(f"❌ Error: {e}")
 
 
 if __name__ == "__main__":
 
-    # Absolute folder path (your provided path)
-    base_folder = r"C:\Users\uppal\PycharmProjects\pdf-text-extractor\Sample PDFs"
+    # Get project root directory dynamically
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-    # Ask user for PDF file name only
+    # Sample PDFs folder inside project
+    sample_folder = os.path.join(BASE_DIR, "Sample PDFs")
+
+    # Output folder inside project
+    output_folder = os.path.join(BASE_DIR, "output")
+
+    # Create output folder if not exists
+    os.makedirs(output_folder, exist_ok=True)
+
     pdf_filename = input("Enter PDF file name (example: sample.pdf): ")
 
-    # Construct full PDF path safely
-    pdf_path = os.path.join(base_folder, pdf_filename)
+    pdf_path = os.path.join(sample_folder, pdf_filename)
+    output_path = os.path.join(output_folder, "output.txt")
 
-    # Output file in same folder
-    output_path = os.path.join(base_folder, "output.txt")
-
-    # Validate PDF existence
     if not os.path.exists(pdf_path):
-        print("❌ File not found. Please check the file name.")
+        print("❌ File not found inside Sample PDFs folder.")
     else:
         extract_text_from_pdf(pdf_path, output_path)
